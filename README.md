@@ -66,3 +66,8 @@ As part of this project, I have covered the below implementations:
 
 <img width="1116" alt="Screenshot 2025-03-10 at 6 10 33 PM" src="https://github.com/user-attachments/assets/a9e3de56-7a82-4bd6-89ee-5ea07bf297a4" />
 
+
+13. Implementing Frontend using Angular
+
+    
+
