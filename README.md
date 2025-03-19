@@ -69,5 +69,27 @@ As part of this project, I have covered the below implementations:
 
 13. Implementing Frontend using Angular
 
-    
+<img width="1465" alt="Screenshot 2025-03-18 at 6 11 35 PM" src="https://github.com/user-attachments/assets/50f31460-378f-4393-ad8e-013994070681" />
+
+Sign in using KeyCloak:
+
+<img width="1460" alt="Screenshot 2025-03-18 at 6 11 42 PM" src="https://github.com/user-attachments/assets/618336ba-a8fc-47ba-aa82-1df0238d2c13" />
+
+<img width="1465" alt="Screenshot 2025-03-18 at 6 11 53 PM" src="https://github.com/user-attachments/assets/3a27a83c-5437-4a74-85c4-705b492b57a7" />
+
+Available Products displayed:
+<img width="1463" alt="Screenshot 2025-03-18 at 6 12 00 PM" src="https://github.com/user-attachments/assets/b862c911-913b-48dc-b4a4-8f3ca747738b" />
+
+Order request executed successfully:
+<img width="1463" alt="Screenshot 2025-03-18 at 6 12 10 PM" src="https://github.com/user-attachments/assets/fc99b65a-cae2-4e68-93e1-e99a2bf7342c" />
+
+Order request failed as quantity is not set:
+<img width="1460" alt="Screenshot 2025-03-18 at 6 12 21 PM" src="https://github.com/user-attachments/assets/b210721a-121d-4952-a672-4aab797d8d68" />
+
+
+
+
+
+
+
 
