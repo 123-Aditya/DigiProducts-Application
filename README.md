@@ -86,6 +86,7 @@ Order request executed successfully:
 Order request failed as quantity is not set:
 <img width="1460" alt="Screenshot 2025-03-18 at 6 12 21 PM" src="https://github.com/user-attachments/assets/b210721a-121d-4952-a672-4aab797d8d68" />
 
+14. Event Driven Architecture using KafkaTracing
 
 
 
