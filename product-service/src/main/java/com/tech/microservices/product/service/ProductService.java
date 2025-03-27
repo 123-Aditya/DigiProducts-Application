@@ -1,6 +1,7 @@
 package com.tech.microservices.product.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,8 @@ import com.tech.microservices.product.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -43,5 +46,18 @@ public class ProductService {
 				.stream()
 				.map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
 				.toList();
+	}
+	
+	public ProductResponse getProductByName(String name) {
+	    log.info("Fetching product by name: {}", name);
+
+	    return productRepository.findByName(name)
+	            .map(product -> new ProductResponse(
+	                    product.getId(),
+	                    product.getName(),
+	                    product.getDescription(),
+	                    product.getPrice()
+	            ))
+	            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
 	}
 }
