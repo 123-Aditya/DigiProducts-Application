@@ -2,6 +2,8 @@ package com.tech.microservices.product.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class ProductService {
+	
+	Logger log = LoggerFactory.getLogger(ProductService.class);
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -28,13 +32,13 @@ public class ProductService {
 				.price(productRequest.price())
 				.build();
 		productRepository.save(product);
-		System.out.println("Product created successfully!");
-		// log.info("Product created successfully!");
+		log.info("Product created successfully!");
 		
 		return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice());
 	}
 
 	public List<ProductResponse> getAllProducts() {
+		log.info("Fetching all products...");
 		return productRepository.findAll()
 				.stream()
 				.map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
