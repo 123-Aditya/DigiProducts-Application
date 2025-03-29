@@ -60,4 +60,15 @@ public class ProductService {
 	            ))
 	            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
 	}
+
+	public String deleteProductByName(String name) {
+		Optional<Product> product = productRepository.findByName(name);
+		if (product.isPresent()) {
+			log.info("Deleting product by name: {}", name);
+	        productRepository.deleteByName(name);
+	        return "Product: " + name + " deleted successfully!";
+	    } else {
+	        return "Product: " + name + " not found!";
+	    }
+	}
 }

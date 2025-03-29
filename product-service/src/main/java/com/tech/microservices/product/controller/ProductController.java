@@ -3,6 +3,7 @@ package com.tech.microservices.product.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,5 +47,11 @@ public class ProductController {
     public ProductResponse getProductByName(@RequestParam String name) {
         return productService.getProductByName(name);
     }
+	
+	@DeleteMapping("/by-name")
+	@ResponseStatus(HttpStatus.OK)
+	public String deleteProductByName(@RequestParam String name) {
+		return productService.deleteProductByName(name);
+	}
 	
 }
