@@ -21,7 +21,13 @@ public class Routes {
 	@Bean		// This is Functional Endpoint programming model used below
 	public RouterFunction<ServerResponse> productServiceRoute() {
 		return GatewayRouterFunctions.route("product_service")
-				.route(RequestPredicates.GET("/api/product"), HandlerFunctions.http("http://localhost:8080"))
+				// Route for fetching all products
+	            .route(RequestPredicates.GET("/api/product/all"), 
+	                    HandlerFunctions.http("http://localhost:8080/api/product/all"))
+
+	            // Route for fetching product by name
+	            .route(RequestPredicates.GET("/api/product/by-name"), 
+	                    HandlerFunctions.http("http://localhost:8080/api/product/by-name"))
 				.filter(CircuitBreakerFilterFunctions.circuitBreaker("productServiceCircuitBreaker", 
 						URI.create("forward:/fallbackRoute")))
 				.build();
