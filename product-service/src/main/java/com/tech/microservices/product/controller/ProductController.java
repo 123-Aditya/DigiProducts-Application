@@ -1,5 +1,6 @@
 package com.tech.microservices.product.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,10 +49,22 @@ public class ProductController {
         return productService.getProductByName(name);
     }
 	
+	@GetMapping("/by-price-range")
+	@ResponseStatus(HttpStatus.OK)
+    public List<ProductResponse> getProductByPriceRange(@RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice) {
+        return productService.getProductByPriceRange(minPrice, maxPrice);
+    }
+	
 	@DeleteMapping("/by-name")
 	@ResponseStatus(HttpStatus.OK)
 	public String deleteProductByName(@RequestParam String name) {
 		return productService.deleteProductByName(name);
+	}
+	
+	@DeleteMapping("/all")
+	@ResponseStatus(HttpStatus.OK)
+	public String deleteAllProducts() {
+		return productService.deleteAllProducts();
 	}
 	
 }

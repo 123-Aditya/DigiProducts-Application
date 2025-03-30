@@ -1,5 +1,6 @@
 package com.tech.microservices.product.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,6 +61,15 @@ public class ProductService {
 	            ))
 	            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
 	}
+	
+	public List<ProductResponse> getProductByPriceRange(BigDecimal minPrice, BigDecimal maxPrice) {
+		log.info("Fetching all products between price range: {} and {}", minPrice, maxPrice);
+		
+		return productRepository.findByPriceBetween(minPrice, maxPrice)
+				.stream()
+				.map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
+				.toList();
+	}
 
 	public String deleteProductByName(String name) {
 		Optional<Product> product = productRepository.findByName(name);
@@ -71,4 +81,20 @@ public class ProductService {
 	        return "Product: " + name + " not found!";
 	    }
 	}
+
+	public String deleteAllProducts() {
+		String message = null;
+		log.info("Deleting all the products...");
+		try {
+			productRepository.deleteAll();
+			message  = "All products deleted successfully";
+		}
+		catch(Exception e){
+			log.error(e.getMessage());
+			message = "Error occured while deleting all the products";
+		}
+		
+		return message;
+	}
+
 }
