@@ -19,6 +19,8 @@ public class Product {
 	private String name;
     private String description;
 	private BigDecimal price;
+	private String brand;
+	private float rating;
     
     public String getName() {
 		return name;
@@ -58,10 +60,28 @@ public class Product {
         return new ProductBuilder();
     }
 
-    public static class ProductBuilder {
+    public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public float getRating() {
+		return rating;
+	}
+
+	public void setRating(float rating) {
+		this.rating = rating;
+	}
+
+	public static class ProductBuilder {
         private String name;
         private String description;
         private BigDecimal price;
+    	private String brand;
+    	private float rating;
 
         public ProductBuilder name(String name) {
             this.name = name;
@@ -77,12 +97,24 @@ public class Product {
             this.price = price;
             return this;
         }
+        
+        public ProductBuilder brand(String brand) {
+        	this.brand = brand;
+        	return this;
+        }
+        
+        public ProductBuilder rating(float rating) {
+        	this.rating = rating;
+        	return this;
+        }
 
         public Product build() {
             Product product = new Product();
             product.name = this.name;
             product.description = this.description;
             product.price = this.price;
+            product.brand = this.brand;
+            product.rating = this.rating;
             return product;
         }
     }

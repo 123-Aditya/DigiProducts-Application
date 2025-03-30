@@ -34,18 +34,20 @@ public class ProductService {
 				.name(productRequest.name())
 				.description(productRequest.description())
 				.price(productRequest.price())
+				.brand(productRequest.brand())
+				.rating(productRequest.rating())
 				.build();
 		productRepository.save(product);
 		log.info("Product created successfully!");
 		
-		return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice());
+		return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice(), product.getBrand(), product.getRating());
 	}
 
 	public List<ProductResponse> getAllProducts() {
 		log.info("Fetching all products...");
 		return productRepository.findAll()
 				.stream()
-				.map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
+				.map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice(), product.getBrand(), product.getRating()))
 				.toList();
 	}
 	
@@ -57,7 +59,9 @@ public class ProductService {
 	                    product.getId(),
 	                    product.getName(),
 	                    product.getDescription(),
-	                    product.getPrice()
+	                    product.getPrice(),
+	                    product.getBrand(),
+	                    product.getRating()
 	            ))
 	            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
 	}
@@ -67,7 +71,7 @@ public class ProductService {
 		
 		return productRepository.findByPriceBetween(minPrice, maxPrice)
 				.stream()
-				.map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
+				.map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice(), product.getBrand(), product.getRating()))
 				.toList();
 	}
 
